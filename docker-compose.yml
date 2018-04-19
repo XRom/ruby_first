@@ -1,0 +1,22 @@
+version: '2.0'
+
+services:
+  web:
+    build:
+      context: ./src
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    volumes:
+      - ./src:/var/www
+    working_dir: /var/www
+    ports:
+      - "80:80"
+  db:
+    image: postgres:10.3-alpine
+    restart: always
+    volumes:
+      - ./db/data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: 123
+      POSTGRES_DB: mydb
