@@ -3,8 +3,6 @@ FROM ruby:2.5.1
 RUN mkdir -p /usr/src/ruby_first
 WORKDIR /usr/src/ruby_first
 
-ENV HOME=/usr/src/ruby_first PATH=/usr/src/ruby_first/bin:$PATH
-
 RUN set -ex \
   && for key in \
     9554F04D7259F04124DE6B476D5A82AC7E37093B \
