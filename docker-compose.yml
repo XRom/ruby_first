@@ -4,19 +4,13 @@ services:
   web:
     build:
       context: ./src
-      dockerfile: Dockerfile
     depends_on:
       - db
     volumes:
-      - ./src:/var/www
-    working_dir: /var/www
+      - ./src/ruby_first:/usr/src/ruby_first/
     ports:
-      - "80:80"
+      - "3000:3000"
   db:
     image: postgres:10.3-alpine
-    restart: always
     volumes:
       - ./db/data:/var/lib/postgresql/data
-    environment:
-      POSTGRES_PASSWORD: 123
-      POSTGRES_DB: mydb
