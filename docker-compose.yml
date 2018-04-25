@@ -1,0 +1,16 @@
+version: '2.0'
+
+services:
+  web:
+    build:
+      context: ./src
+    depends_on:
+      - db
+    volumes:
+      - ./src/ruby_first:/usr/src/ruby_first/
+    ports:
+      - "3000:3000"
+  db:
+    image: postgres:10.3-alpine
+    volumes:
+      - ./db/data:/var/lib/postgresql/data
