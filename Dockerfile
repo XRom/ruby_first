@@ -1,7 +1,7 @@
 FROM ruby:2.5.1
 
-RUN mkdir -p /usr/src/ruby_first
-WORKDIR /usr/src/ruby_first
+RUN mkdir -p /app
+WORKDIR /app
 
 RUN set -ex \
   && for key in \
@@ -25,11 +25,13 @@ RUN set -ex \
   && tar -xJf "node-v$NODE_VERSION-linux-x64.tar.xz" -C /usr/local --strip-components=1 \
   && rm "node-v$NODE_VERSION-linux-x64.tar.xz" SHASUMS256.txt.asc SHASUMS256.txt
 
-COPY /ruby_first/Gemfile* /usr/src/ruby_first/
-RUN bundle install
+COPY /Gemfile* ./
+RUN bundle install --jobs 3
 
-COPY /ruby_first /usr/src/ruby_first/
+COPY . /app
 
 EXPOSE 3000
+
+#CMD sleep infinity
 
 CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0", "-p", "3000"]
