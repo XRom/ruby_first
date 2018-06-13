@@ -1,7 +1,8 @@
 FROM ruby:2.5.1
 
-RUN mkdir -p /app
-WORKDIR /app
+RUN mkdir -p /task_manager
+RUN chmod o+rw -R /task_manager
+WORKDIR /task_manager
 
 RUN set -ex \
   && for key in \
@@ -28,7 +29,7 @@ RUN set -ex \
 COPY /Gemfile* ./
 RUN bundle install --jobs 3
 
-COPY . /app
+COPY . /task_manager
 
 EXPOSE 3000
 

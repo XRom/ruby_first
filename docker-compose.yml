@@ -1,4 +1,4 @@
-version: '2.0'
+version: '2.3'
 
 services:
   web:
@@ -7,10 +7,15 @@ services:
     depends_on:
       - db
     volumes:
-      - .:/app
+      - .:/task_manager
+      - 'b_cache:/bundle_cache:rw'
     ports:
       - "3000:3000"
+    environment:
+      DATABASE_HOST: db
+      DATABASE_USERNAME: postgres
+      BUNDLE_PATH: /bundle_cache
   db:
     image: postgres:10.3-alpine
-    volumes:
-      - ./../db/data:/var/lib/postgresql/data
+volumes:
+  b_cache:
