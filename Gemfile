@@ -69,6 +69,3 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'rubocop', '~> 0.57.2', require: false
 end
-
-# для simple_form
-gem 'ast', '~> 2.4'
