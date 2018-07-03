@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   scope module: :web do
-    resources :users, only: [:new, :create]
+    resources :developers, only: [:new, :create]
     resource :welcome, only: :show
-    resource :session, only: [:new, :create, :destroy]
+    resource :sessions, only: [:new, :create, :destroy, :index]
   end
 end
