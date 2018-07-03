@@ -7,15 +7,21 @@ class Web::SessionsController < Web::ApplicationController
     # Remove the user id from the session
     #@_current_user = session[:user_id] = nil
     sign_out
-    redirect_to root_url
+    redirect_to new_sessions_url
   end
 
   def create
-    if user = User.find_by(params[:email]).authenticate(params[:password])
+#  	raise foo.inspect
+#  	p params[:password]
+    
+    if user = User.where(email: params[:session][:email]).first.authenticate(params[:session][:password])
       # Save the user ID in the session so it can be used in
       # subsequent requests
-      session[:user_id] = user.id
-      redirect_to root_url
+      sign_in user
+      redirect_to welcome_url
+    else
+      redirect_to new_sessions_url
     end
+   # raise params[:email].inspect
   end
 end
