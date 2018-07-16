@@ -4,24 +4,22 @@ class Web::SessionsController < Web::ApplicationController
   end
 
   def destroy
-    # Remove the user id from the session
-    #@_current_user = session[:user_id] = nil
     sign_out
     redirect_to new_sessions_url
   end
 
   def create
-#  	raise foo.inspect
-#  	p params[:password]
-    
-    if user = User.where(email: params[:session][:email]).first.authenticate(params[:session][:password])
-      # Save the user ID in the session so it can be used in
-      # subsequent requests
-      sign_in user
+    @session = Session.new(session_params)
+
+    if @session.valid?
+      sign_in @session.user
       redirect_to welcome_url
     else
-      redirect_to new_sessions_url
+      render :new
     end
-   # raise params[:email].inspect
+  end
+
+  def session_params
+    params.require(:session).permit(:email, :password)
   end
 end

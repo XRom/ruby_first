@@ -7,7 +7,7 @@ class Web::DevelopersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get create" do
-    password = 'password_confirmation'
+    password = generate :string
     developer = attributes_for(:developer).merge({
       password: password,
       password_confirmation: password

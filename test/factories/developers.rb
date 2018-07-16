@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :developer do
-    first_name :string
-    last_name :string
+    first_name { |n| generate :string }
+    last_name { |n| generate :string }
     email
   end
 end
