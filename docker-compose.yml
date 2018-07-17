@@ -8,13 +8,13 @@ services:
       - db
     volumes:
       - .:/task_manager
-      - 'b_cache:/usr/local/bundle:rw'
+      - 'b_cache:/bundle_cache:rw'
     ports:
       - "3000:3000"
     environment:
       DATABASE_HOST: db
       DATABASE_USERNAME: postgres
-#      BUNDLE_PATH: /bundle_cache
+      BUNDLE_PATH: /bundle_cache
   db:
     image: postgres:10.3-alpine
 volumes:
