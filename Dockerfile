@@ -26,8 +26,19 @@ RUN set -ex \
   && tar -xJf "node-v$NODE_VERSION-linux-x64.tar.xz" -C /usr/local --strip-components=1 \
   && rm "node-v$NODE_VERSION-linux-x64.tar.xz" SHASUMS256.txt.asc SHASUMS256.txt
 
+RUN npm install --global yarn webpack
+RUN gem install bundler rubygems-bundler
+
 COPY /Gemfile* ./
 RUN bundle install --jobs 3
+
+COPY Rakefile Rakefile
+COPY config config
+
+COPY yarn.lock yarn.lock
+COPY package.json package.json
+
+RUN yarn install
 
 COPY . /task_manager
 

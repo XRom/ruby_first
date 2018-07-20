@@ -79,6 +79,7 @@ gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) support
 gem "responders"
 gem "active_model_serializers"
 
-
 gem 'kaminari'
 gem 'ransack'
+
+gem 'webpacker', '>= 4.0.x'

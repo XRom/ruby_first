@@ -1,5 +1,7 @@
 {
   "name": "task_manager",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "@rails/webpacker": "^3.5.5"
+  }
 }
