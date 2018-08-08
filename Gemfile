@@ -83,3 +83,6 @@ gem 'kaminari'
 gem 'ransack'
 
 gem 'webpacker', '>= 4.0.x'
+
+gem 'webpacker-react'
+gem 'js-routes'
