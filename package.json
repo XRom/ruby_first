@@ -8,6 +8,7 @@
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-trello": "^1.32.2",
-    "webpacker-react": "^0.3.2"
+    "webpacker-react": "^0.3.2",
+    "whatwg-fetch": "^2.0.4"
   }
 }
